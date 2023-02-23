@@ -14,6 +14,7 @@ function App() {
 
         <main>
           <Post />
+          <Post />
         </main>
       </div>
     </div>
