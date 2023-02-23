@@ -1,11 +1,10 @@
 ﻿import styles from "./Header.module.css";
-import { SlRocket } from "react-icons/sl"
-import astronautaLogo from "../assets/astronauta.svg";
+import { RocketLaunch } from "phosphor-react"
 
 export function Header(){
     return (
         <header className={styles.header}>
-            <SlRocket  className={styles.icon}/>
+            <RocketLaunch  className={styles.icon}/>
             <strong>Feed</strong>
         </header>
     )
