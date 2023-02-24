@@ -30,6 +30,11 @@ export function Post(){
                 <p>Follow me 👉 <a href="https://github.com/Dark3088">my profile</a></p>
                 <p><a href="#">#space #universe</a></p>
             </div>
+            <form className={styles.commentForm}>
+                <strong>Leave your feedback</strong>
+                <textarea placeholder="Leave a comment"/>
+                <footer><button type="submit">Publish</button></footer>
+            </form>
         </article>
     )
 }
