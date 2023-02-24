@@ -10,10 +10,10 @@ export function Comment(){
                     <header>
                         <div className={styles.authorAndTime}>
                             <strong>Natália Lima</strong>
-                            <time title="Feb 24 at 12:48 am">Cerca de 1h atrás</time>
+                            <time title="Feb 24 at 12:48 am">public 1h ago</time>
                         </div>
                         <button title="Delete comment">
-                            <Trash size={20}/>
+                            <Trash size={24}/>
                         </button>
                     </header>
                     <p>Very Good Diego! Success 👏 👏 👏</p>
