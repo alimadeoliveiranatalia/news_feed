@@ -5,6 +5,7 @@ import enUs from "date-fns/locale/en-US"
 import { Comment } from "./Comment";
 import { Avatar } from "./Avatar";
 import { ChangeEvent, FormEvent, InvalidEvent, useState } from "react";
+import { Smiley } from "phosphor-react";
 
 interface Author {
     name: string;
@@ -35,6 +36,8 @@ export function Post({ post }: PostProps){
 
     const [newCommentText, setNewCommentText] = useState("");
 
+    const [showPicker, setShowPicker] = useState(false);
+
     const publishedDateFormatted = format(post.publishedAt, "LLL d ho", {
         locale: enUs
     });
@@ -60,6 +63,14 @@ export function Post({ post }: PostProps){
 
     function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>){
         event.target.setCustomValidity('Esse campo é obrigatório!');
+    }
+
+    function handleSelectEmoji(){
+        setShowPicker(false);
+    }
+
+    function handleShowEmojiMenu(){
+        setShowPicker(true);
     }
 
     function deleteComment(commentToDelete: string){
@@ -115,10 +126,19 @@ export function Post({ post }: PostProps){
                     <button type="submit" disabled={isNewCommentEmpty}>
                         Publish
                     </button>
-                    <button type="button" disabled={isNewCommentEmpty}>
-                        <EmojiPicker 
-                            theme={Theme.DARK}
-                        />
+                    <button
+                     type="button"
+                     disabled={isNewCommentEmpty}
+                     onClick={handleShowEmojiMenu}
+                    >
+                        <Smiley size={32} />
+                        { showPicker && (
+                            <EmojiPicker 
+                                theme={Theme.DARK}
+                                onEmojiClick={handleSelectEmoji}
+                            /> 
+                            )
+                        }
                     </button>
                 </footer>
             </form>
