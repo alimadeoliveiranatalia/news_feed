@@ -13,6 +13,8 @@ export function Post({ author, publishedAt, content }){
 
     const [newCommentText, setNewCommentText] = useState("");
 
+    console.log(newCommentText);
+
     const publishedDateFormatted = format(publishedAt, "LLL d ho", {
         locale: enUs
     });
@@ -33,7 +35,13 @@ export function Post({ author, publishedAt, content }){
     }
 
     function handleNewCommentChange(){
+        event.target.setCustomValidity("");
         setNewCommentText(event.target.value);
+    }
+
+    function handleNewCommentInvalid(){
+        console.log(event);
+        event.target.setCustomValidity('Esse campo é obrigatório!');
     }
 
     function deleteComment(commentToDelete){
@@ -42,6 +50,8 @@ export function Post({ author, publishedAt, content }){
         });
         setComments(commentsWithoutDeletedOne);
     }
+
+    const isNewCommentEmpty = newCommentText.length === 0;
 
     return (
         <article className={styles.post}>
@@ -73,8 +83,21 @@ export function Post({ author, publishedAt, content }){
             </div>
             <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
                 <strong>Leave your feedback</strong>
-                <textarea name="comment" value={newCommentText} onChange={handleNewCommentChange} placeholder="Leave a comment"/>
-                <footer><button type="submit">Publish</button></footer>
+
+                <textarea
+                 name="comment"
+                 value={newCommentText}
+                 onChange={handleNewCommentChange}
+                 placeholder="Leave a comment"
+                 onInvalid={handleNewCommentInvalid}
+                 required
+                />
+
+                <footer>
+                    <button type="submit" disabled={isNewCommentEmpty}>
+                        Publish
+                    </button>
+                </footer>
             </form>
             <div className={styles.commentList}>
                 { comments.map(comment => {
