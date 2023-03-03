@@ -2,7 +2,12 @@
 import { Avatar } from "./Avatar";
 import styles from "./Comment.module.css";
 
-export function Comment(){
+export function Comment({ content, onDeleteComment }){
+    
+    function handleDeleteComment(){
+        onDeleteComment(content);
+    }
+
     return (
         <div className={styles.comment}>
             <Avatar hasBorder={false} src="https://media.licdn.com/dms/image/C5603AQGr2PwmekdtxA/profile-displayphoto-shrink_400_400/0/1647119064932?e=1682553600&v=beta&t=f38UH743StnDa-puiERuyEb7jEcDhhqp8wb1EWS2vns" />
@@ -13,11 +18,11 @@ export function Comment(){
                             <strong>Natália Lima</strong>
                             <time title="Feb 24 at 12:48 am">public 1h ago</time>
                         </div>
-                        <button title="Delete comment">
+                        <button onClick={handleDeleteComment} title="Delete comment">
                             <Trash size={24}/>
                         </button>
                     </header>
-                    <p>Very Good Diego! Success 👏 👏 👏</p>
+                    <p>{content}</p>
                 </div>
                 <footer>
                     <button>
