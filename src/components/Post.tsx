@@ -1,32 +1,50 @@
 ﻿import styles from "./Post.module.css";
+import EmojiPicker, { Theme } from "emoji-picker-react";
 import { format, formatDistanceToNow } from "date-fns";
 import enUs from "date-fns/locale/en-US"
 import { Comment } from "./Comment";
 import { Avatar } from "./Avatar";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from "react";
 
+interface Author {
+    name: string;
+    role: string;
+    avatarUrl: string;
+}
 
-export function Post({ author, publishedAt, content }){
+interface Content {
+    type: "paragraph" | "link";
+    content: string;
+}
+
+export interface PostType {
+    id: number;
+    author: Author;
+    publishedAt: Date;
+    content: Content[];
+}
+
+interface PostProps {
+    post: PostType;
+}
+
+export function Post({ post }: PostProps){
     const [comments, setComments] = useState([
         "Valeu pelo conteúdo! 🤩"
     ]);
 
     const [newCommentText, setNewCommentText] = useState("");
 
-    console.log(newCommentText);
-
-    const publishedDateFormatted = format(publishedAt, "LLL d ho", {
+    const publishedDateFormatted = format(post.publishedAt, "LLL d ho", {
         locale: enUs
     });
 
-    const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    const publishedDateRelativeToNow = formatDistanceToNow(post.publishedAt, {
         locale: enUs,
     });
 
-    function handleCreateNewComment(){
+    function handleCreateNewComment(event: FormEvent){
         event.preventDefault();
-
-        console.log("Hi! 😏");
 
         setComments([ ...comments, newCommentText]);
 
@@ -34,17 +52,17 @@ export function Post({ author, publishedAt, content }){
 
     }
 
-    function handleNewCommentChange(){
+    function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>){
         event.target.setCustomValidity("");
+
         setNewCommentText(event.target.value);
     }
 
-    function handleNewCommentInvalid(){
-        console.log(event);
+    function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>){
         event.target.setCustomValidity('Esse campo é obrigatório!');
     }
 
-    function deleteComment(commentToDelete){
+    function deleteComment(commentToDelete: string){
         const commentsWithoutDeletedOne = comments.filter(comment => {
             return comment !== commentToDelete;
         });
@@ -59,21 +77,21 @@ export function Post({ author, publishedAt, content }){
                 <div className={styles.author}>
                     <Avatar 
                         hasBorder
-                        src={author.avatarUrl} 
+                        src={post.author.avatarUrl} 
                     />
                     <div className={styles.authorInfo}>
-                        <strong>{author.name}</strong>
-                        <span>{author.role}</span>
+                        <strong>{post.author.name}</strong>
+                        <span>{post.author.role}</span>
                     </div>
                 </div>
                 <time 
                     title={publishedDateFormatted}
-                    dateTime={publishedAt.toISOString()}                    
+                    dateTime={post.publishedAt.toISOString()}                    
                 >{publishedDateRelativeToNow}</time>
             </header>
             
             <div className={styles.content}>
-               {content.map(line => {
+               {post.content.map(line => {
                     if(line.type === "paragraph") {
                         return <p key={line.content} >{line.content}</p>;
                     } else if (line.type === "link"){
@@ -85,17 +103,22 @@ export function Post({ author, publishedAt, content }){
                 <strong>Leave your feedback</strong>
 
                 <textarea
-                 name="comment"
-                 value={newCommentText}
-                 onChange={handleNewCommentChange}
-                 placeholder="Leave a comment"
-                 onInvalid={handleNewCommentInvalid}
-                 required
+                    name="comment"
+                    value={newCommentText}
+                    onChange={handleNewCommentChange}
+                    placeholder="Leave a comment"
+                    onInvalid={handleNewCommentInvalid}
+                    required
                 />
 
                 <footer>
                     <button type="submit" disabled={isNewCommentEmpty}>
                         Publish
+                    </button>
+                    <button type="button" disabled={isNewCommentEmpty}>
+                        <EmojiPicker 
+                            theme={Theme.DARK}
+                        />
                     </button>
                 </footer>
             </form>
