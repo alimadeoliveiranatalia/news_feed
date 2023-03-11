@@ -98,11 +98,14 @@
     color: var(--green-300);
     border: 0;
 }
+<<<<<<< HEAD
 /*.commentForm button[type=button]:disabled {
     margin-left: 1rem;
     background: transparent;
     color: var(--gray-100);
 }*/
+=======
+>>>>>>> refs/remotes/origin/main
 .commentForm footer {
     visibility: hidden;
     max-height: 0;

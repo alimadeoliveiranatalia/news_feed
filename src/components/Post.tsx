@@ -115,6 +115,7 @@ export function Post({ post }: PostProps){
                 <strong>Leave your feedback</strong>
 
                 <textarea
+                    ref="commentTextarea"
                     name="comment"
                     value={newCommentText}
                     onChange={handleNewCommentChange}
@@ -132,6 +133,15 @@ export function Post({ post }: PostProps){
                      onClick={handleShowEmojiMenu}
                     >
                         <Smiley size={32} />
+<<<<<<< HEAD
+=======
+                        { showPicker && (
+                            <EmojiPicker 
+                                theme={Theme.DARK}
+                                onEmojiClick={handleSelectEmoji}
+                            /> )
+                        }
+>>>>>>> refs/remotes/origin/main
                     </button>
                     { showPicker && (
                         <EmojiPicker 
