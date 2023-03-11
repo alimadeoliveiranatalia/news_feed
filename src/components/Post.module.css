@@ -94,14 +94,15 @@
     color: var(--gray-400);
     cursor: pointer;
 }
-.commentForm button[type=button]:not(:disabled):hover {
+.commentForm button[type=button]:hover {
     color: var(--green-300);
+    border: 0;
 }
-.commentForm button[type=button]:disabled {
+/*.commentForm button[type=button]:disabled {
     margin-left: 1rem;
     background: transparent;
     color: var(--gray-100);
-}
+}*/
 .commentForm footer {
     visibility: hidden;
     max-height: 0;

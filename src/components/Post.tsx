@@ -1,5 +1,5 @@
 ﻿import styles from "./Post.module.css";
-import EmojiPicker, { Theme } from "emoji-picker-react";
+import EmojiPicker, { EmojiClickData, Theme } from "emoji-picker-react";
 import { format, formatDistanceToNow } from "date-fns";
 import enUs from "date-fns/locale/en-US"
 import { Comment } from "./Comment";
@@ -65,7 +65,8 @@ export function Post({ post }: PostProps){
         event.target.setCustomValidity('Esse campo é obrigatório!');
     }
 
-    function handleSelectEmoji(){
+    function handleSelectEmoji(emojiObject: EmojiClickData){
+        setNewCommentText((prevInput) => prevInput + emojiObject.emoji);
         setShowPicker(false);
     }
 
@@ -128,18 +129,17 @@ export function Post({ post }: PostProps){
                     </button>
                     <button
                      type="button"
-                     disabled={isNewCommentEmpty}
                      onClick={handleShowEmojiMenu}
                     >
                         <Smiley size={32} />
-                        { showPicker && (
-                            <EmojiPicker 
-                                theme={Theme.DARK}
-                                onEmojiClick={handleSelectEmoji}
-                            /> 
-                            )
-                        }
                     </button>
+                    { showPicker && (
+                        <EmojiPicker 
+                            theme={Theme.DARK}
+                            onEmojiClick={handleSelectEmoji}
+                        /> 
+                        )
+                    }
                 </footer>
             </form>
             <div className={styles.commentList}>
