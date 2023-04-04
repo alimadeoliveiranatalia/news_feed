@@ -5,7 +5,7 @@ export function Header(){
     return (
         <header className={styles.header}>
             <RocketLaunch  className={styles.icon}/>
-            <strong>Feed</strong>
+            <strong>Astronomy Feed</strong>
         </header>
     )
 }

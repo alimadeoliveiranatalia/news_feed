@@ -57,7 +57,7 @@ export function Post({ post }: PostProps){
 
     function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>){
         event.target.setCustomValidity("");
-
+        
         setNewCommentText(event.target.value);
     }
 
@@ -66,7 +66,8 @@ export function Post({ post }: PostProps){
     }
 
     function handleSelectEmoji(emojiObject: EmojiClickData){
-        setNewCommentText((prevInput) => prevInput + emojiObject.emoji);
+        const { emoji } = emojiObject;
+        setNewCommentText((prevInput) => prevInput + emoji);
         setShowPicker(false);
     }
 
@@ -115,7 +116,6 @@ export function Post({ post }: PostProps){
                 <strong>Leave your feedback</strong>
 
                 <textarea
-                    ref="commentTextarea"
                     name="comment"
                     value={newCommentText}
                     onChange={handleNewCommentChange}
