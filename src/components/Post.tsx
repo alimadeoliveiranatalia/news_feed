@@ -131,6 +131,7 @@ export function Post({ post }: PostProps){
                     <button
                      type="button"
                      onClick={handleShowEmojiMenu}
+                     className={styles.button_icon}
                     >
                         <Smiley size={32} />
                         { showPicker && (
