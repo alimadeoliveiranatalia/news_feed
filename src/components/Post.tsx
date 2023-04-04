@@ -1,5 +1,5 @@
 ﻿import styles from "./Post.module.css";
-import EmojiPicker, { EmojiClickData, Theme } from "emoji-picker-react";
+import EmojiPicker, { EmojiClickData, EmojiStyle, SkinTones, SuggestionMode, Theme } from "emoji-picker-react";
 import { format, formatDistanceToNow } from "date-fns";
 import enUs from "date-fns/locale/en-US"
 import { Comment } from "./Comment";
@@ -125,22 +125,29 @@ export function Post({ post }: PostProps){
                 />
 
                 <footer>
-                    <button type="submit" disabled={isNewCommentEmpty}>
-                        Publish
-                    </button>
-                    <button
-                     type="button"
-                     onClick={handleShowEmojiMenu}
-                     className={styles.button_icon}
-                    >
-                        <Smiley size={32} />
-                        { showPicker && (
-                            <EmojiPicker 
-                                theme={Theme.DARK}
-                                onEmojiClick={handleSelectEmoji}
-                            /> )
-                        }
-                    </button>
+                    <div className={styles.content_footer}>
+                        <button type="submit" disabled={isNewCommentEmpty}>
+                            Publish
+                        </button>
+                        <button
+                         type="button"
+                         onClick={handleShowEmojiMenu}
+                         className={styles.button_emoji}
+                        >
+                            <Smiley size={32} />
+                            { showPicker && (
+                                <EmojiPicker 
+                                    theme={Theme.DARK}
+                                    emojiStyle={EmojiStyle.TWITTER}
+                                    onEmojiClick={handleSelectEmoji}
+                                    lazyLoadEmojis={true}
+                                    suggestedEmojisMode={SuggestionMode.RECENT}
+                                    defaultSkinTone={SkinTones.MEDIUM_DARK}
+                            
+                                /> )
+                            }
+                        </button>
+                    </div>
                 </footer>
             </form>
             <div className={styles.commentList}>

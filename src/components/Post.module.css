@@ -87,20 +87,34 @@
     opacity: 0.7;
     cursor: not-allowed;
 }
-.commentForm button[type=button] {
-    margin-left: 1rem;
+.button_emoji {
+    position: absolute;
+    padding-top: 1.8rem;
+    margin-left: 7.5rem;
     border: 0;
     background: transparent;
     color: var(--gray-400);
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: normal;
 }
-.commentForm button[type=button]:hover {
+
+.button_emoji svg {
+    
+}
+
+.button_emoji:hover {
     color: var(--blue-300);
 }
 .commentForm footer {
     visibility: hidden;
     max-height: 0;
-    display: block;
+}
+.content_footer {
+    display: flex;
+    flex-flow: nowrap;
 }
 .commentForm:focus-within footer {
     visibility: visible;
@@ -109,7 +123,4 @@
 .commentList {
     margin-top: 2rem;
 }
-.button_icon {
-    /*display: flex;
-    flex-direction: row;*/
-}
+
