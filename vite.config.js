@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "https://github.com/alimadeoliveiranatalia/news_feed/",
+  base: "https://alimadeoliveiranatalia/news_feed/",
   plugins: [react()],
 })
