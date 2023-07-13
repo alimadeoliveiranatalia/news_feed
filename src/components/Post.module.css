@@ -88,29 +88,21 @@
     cursor: not-allowed;
 }
 .button_emoji {
-    position: absolute;
-    padding-top: 1.8rem;
-    margin-left: 7.5rem;
+    padding: 0.3rem;
+    margin-left: 0.5rem;
     border: 0;
     background: transparent;
     color: var(--gray-400);
     cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: normal;
 }
 .commentForm button[type=button]:hover {
     color: var(--green-300);
 }
-<<<<<<< HEAD
-/*.commentForm button[type=button]:disabled {
+.commentForm button[type=button]:disabled {
     margin-left: 1rem;
     background: transparent;
     color: var(--gray-100);
-}*/
-=======
->>>>>>> refs/remotes/origin/main
+}
 .commentForm footer {
     visibility: hidden;
     max-height: 0;

@@ -129,10 +129,11 @@ export function Post({ post }: PostProps){
                         Publish
                     </button>
                     <button
+                     className={styles.button_emoji}
                      type="button"
                      onClick={handleShowEmojiMenu}
                     >
-                        <Smiley size={32} />
+                        <Smiley size={32}  />
                         { showPicker && (
                             <EmojiPicker 
                                 theme={Theme.DARK}
