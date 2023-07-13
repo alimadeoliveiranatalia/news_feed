@@ -101,10 +101,6 @@
     align-items: normal;
 }
 
-.button_emoji svg {
-    
-}
-
 .button_emoji:hover {
     color: var(--blue-300);
 }

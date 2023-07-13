@@ -24,7 +24,7 @@ const posts: PostType[] = [
   {
     id: 2,
     author: {
-      avatarUrl: "https://media.licdn.com/dms/image/C5603AQGr2PwmekdtxA/profile-displayphoto-shrink_400_400/0/1647119064932?e=1682553600&v=beta&t=f38UH743StnDa-puiERuyEb7jEcDhhqp8wb1EWS2vns",
+      avatarUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
       name: "Iana Nadina",
       role: "CTO @Iana's Variedades"
     },
