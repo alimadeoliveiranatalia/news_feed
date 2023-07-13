@@ -125,29 +125,21 @@ export function Post({ post }: PostProps){
                 />
 
                 <footer>
-                    <div className={styles.content_footer}>
-                        <button type="submit" disabled={isNewCommentEmpty}>
-                            Publish
-                        </button>
-                        <button
-                         type="button"
-                         onClick={handleShowEmojiMenu}
-                         className={styles.button_emoji}
-                        >
-                            <Smiley size={32} />
-                            { showPicker && (
-                                <EmojiPicker 
-                                    theme={Theme.DARK}
-                                    emojiStyle={EmojiStyle.TWITTER}
-                                    onEmojiClick={handleSelectEmoji}
-                                    lazyLoadEmojis={true}
-                                    suggestedEmojisMode={SuggestionMode.RECENT}
-                                    defaultSkinTone={SkinTones.MEDIUM_DARK}
-                            
-                                /> )
-                            }
-                        </button>
-                    </div>
+                    <button type="submit" disabled={isNewCommentEmpty}>
+                        Publish
+                    </button>
+                    <button
+                     type="button"
+                     onClick={handleShowEmojiMenu}
+                    >
+                        <Smiley size={32} />
+                        { showPicker && (
+                            <EmojiPicker 
+                                theme={Theme.DARK}
+                                onEmojiClick={handleSelectEmoji}
+                            /> )
+                        }
+                    </button>
                 </footer>
             </form>
             <div className={styles.commentList}>
